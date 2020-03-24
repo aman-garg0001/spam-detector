@@ -1,8 +1,8 @@
 import pickle
 f1 = open("nb_spam_classifier.pickle", "rb")
 spamClassifier = pickle.load(f1)
-f2 = open('word_features.pickle', 'wb')
-word_features = pickle.load(f2)
+f2 = open('word_features.pickle', 'rb')
+wf = pickle.load(f2)
 
 def extract_features(document):
     document_words = set(document)
@@ -13,6 +13,7 @@ def extract_features(document):
 
 inp = open("input.txt", "r")
 text = inp.read()
-output = spamClassifier.classify(extract_features(text.split()))
+outp = spamClassifier.classify(extract_features(text.split()))
 out = open("output.txt", "w")
-out.write(output)
+out.write(outp)
+out.close()
